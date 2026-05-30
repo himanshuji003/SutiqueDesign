@@ -1,0 +1,501 @@
+/* ============================================================================
+   Theme Luxury Styles - Premium Ethnic Wear Storefront
+   ============================================================================ */
+
+:root {
+  /* Luxury Color Palette */
+  --color-cream: #f5efe7;
+  --color-maroon: #6b3d3d;
+  --color-maroon-dark: #4a2828;
+  --color-maroon-light: #8b5555;
+  --color-gold: #d4af37;
+  --color-gold-light: #e6c86b;
+  --color-navy: #1a2b3c;
+  --color-navy-light: #2d3f52;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #f9f7f4;
+  --color-gray-medium: #e5dcd5;
+  --color-gray-dark: #8b8b8b;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', 'Cormorant Garamond', serif;
+  --font-body: 'Poppins', 'Segoe UI', sans-serif;
+  --font-size-h1: 3.5rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 2rem;
+  --font-size-h4: 1.5rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+
+  /* Borders & Radius */
+  --border-radius: 4px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 16px;
+  --border-radius-full: 50%;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --transition-duration: 0.3s;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   Mobile Breakpoints (Mobile-First Approach)
+   ============================================================================ */
+@media (min-width: 750px) {
+  :root {
+    --font-size-h1: 4rem;
+    --font-size-h2: 3rem;
+    --font-size-h3: 2.2rem;
+    --font-size-h4: 1.6rem;
+  }
+}
+
+@media (min-width: 990px) {
+  :root {
+    --font-size-h1: 4.5rem;
+    --font-size-h2: 3.5rem;
+    --font-size-h3: 2.5rem;
+    --font-size-h4: 1.8rem;
+  }
+}
+
+/* ============================================================================
+   Global Styles
+   ============================================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--color-cream);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+}
+
+/* ============================================================================
+   Typography
+   ============================================================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.2;
+  color: var(--color-black);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+p {
+  margin: var(--spacing-md) 0;
+}
+
+a {
+  color: var(--color-maroon);
+  text-decoration: none;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* ============================================================================
+   Utility Classes
+   ============================================================================ */
+
+/* Text Colors */
+.text-cream {
+  color: var(--color-cream);
+}
+.text-maroon {
+  color: var(--color-maroon);
+}
+.text-gold {
+  color: var(--color-gold);
+}
+.text-navy {
+  color: var(--color-navy);
+}
+.text-black {
+  color: var(--color-black);
+}
+.text-white {
+  color: var(--color-white);
+}
+.text-gray {
+  color: var(--color-gray-dark);
+}
+
+/* Background Colors */
+.bg-cream {
+  background-color: var(--color-cream);
+}
+.bg-maroon {
+  background-color: var(--color-maroon);
+}
+.bg-maroon-dark {
+  background-color: var(--color-maroon-dark);
+}
+.bg-gold {
+  background-color: var(--color-gold);
+}
+.bg-navy {
+  background-color: var(--color-navy);
+}
+.bg-white {
+  background-color: var(--color-white);
+}
+.bg-gray-light {
+  background-color: var(--color-gray-light);
+}
+
+/* Spacing Utilities */
+.p-xs {
+  padding: var(--spacing-xs);
+}
+.p-sm {
+  padding: var(--spacing-sm);
+}
+.p-md {
+  padding: var(--spacing-md);
+}
+.p-lg {
+  padding: var(--spacing-lg);
+}
+.p-xl {
+  padding: var(--spacing-xl);
+}
+
+.m-xs {
+  margin: var(--spacing-xs);
+}
+.m-sm {
+  margin: var(--spacing-sm);
+}
+.m-md {
+  margin: var(--spacing-md);
+}
+.m-lg {
+  margin: var(--spacing-lg);
+}
+.m-xl {
+  margin: var(--spacing-xl);
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+.mb-xl {
+  margin-bottom: var(--spacing-xl);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+.mt-xl {
+  margin-top: var(--spacing-xl);
+}
+
+/* Flexbox Utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}
+
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+
+/* Text Utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-serif {
+  font-family: var(--font-heading);
+}
+
+.font-sans {
+  font-family: var(--font-body);
+}
+
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Display Utilities */
+.hidden {
+  display: none !important;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.max-w-container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================================
+   Container & Section Styles
+   ============================================================================ */
+
+.luxury-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .luxury-container {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+@media (min-width: 990px) {
+  .luxury-container {
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+.section-padding {
+  padding: var(--spacing-xl) 0;
+}
+
+@media (min-width: 750px) {
+  .section-padding {
+    padding: var(--spacing-2xl) 0;
+  }
+}
+
+.section-padding-lg {
+  padding: var(--spacing-2xl) 0;
+}
+
+@media (min-width: 750px) {
+  .section-padding-lg {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+/* ============================================================================
+   Luxury Accents
+   ============================================================================ */
+
+.accent-line {
+  display: inline-block;
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin: var(--spacing-md) 0;
+}
+
+.accent-line-centered {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin: var(--spacing-md) auto;
+}
+
+.accent-diamond {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-gold);
+  transform: rotate(45deg);
+  margin: 0 var(--spacing-sm);
+}
+
+/* ============================================================================
+   Animations
+   ============================================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn var(--transition-duration) var(--transition-timing);
+}
+
+.animate-slideInUp {
+  animation: slideInUp var(--transition-duration) var(--transition-timing);
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft var(--transition-duration) var(--transition-timing);
+}
+
+.animate-slideInRight {
+  animation: slideInRight var(--transition-duration) var(--transition-timing);
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+  body {
+    background-color: white;
+  }
+}

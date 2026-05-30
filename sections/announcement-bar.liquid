@@ -1,0 +1,119 @@
+<style>
+  .announcement-bar {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_top | default: 12 }}px {{ section.settings.padding_horizontal | default: 20 }}px;
+    text-align: center;
+    font-size: {{ section.settings.font_size | default: 14 }}px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .announcement-bar a {
+    color: {{ section.settings.link_color | default: '#d4af37' }};
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .announcement-bar a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 749px) {
+    .announcement-bar {
+      padding: {{ section.settings.padding_top_mobile | default: 10 }}px {{ section.settings.padding_horizontal | default: 16 }}px;
+      font-size: {{ section.settings.font_size_mobile | default: 12 }}px;
+    }
+  }
+</style>
+
+<div class="announcement-bar">
+  {{ section.settings.announcement_text }}
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Free Shipping on Orders Above ₹999 | New Festive Collection Now Live"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#6b3d3d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding (Desktop)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 6,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 11,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

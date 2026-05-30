@@ -1,0 +1,251 @@
+<style>
+  .festive-banner-section {
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    {% endif %}
+    padding: var(--spacing-3xl) var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .festive-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(26, 43, 60, {{ section.settings.overlay_opacity | default: 0.5 }});
+  }
+
+  .festive-banner-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+  }
+
+  @media (min-width: 750px) {
+    .festive-banner-container {
+      padding: 0 var(--spacing-lg);
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 990px) {
+    .festive-banner-container {
+      padding: 0 var(--spacing-xl);
+    }
+  }
+
+  .festive-banner-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    order: -1;
+  }
+
+  @media (min-width: 750px) {
+    .festive-banner-image {
+      order: 1;
+    }
+  }
+
+  .festive-banner-content {
+    text-align: center;
+  }
+
+  @media (min-width: 750px) {
+    .festive-banner-content {
+      text-align: left;
+    }
+  }
+
+  .festive-banner-title {
+    font-size: var(--font-size-h1);
+    font-family: var(--font-heading);
+    color: {{ section.settings.title_color }};
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+  }
+
+  .festive-banner-description {
+    font-size: 1.125rem;
+    color: {{ section.settings.description_color }};
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
+
+  .festive-banner-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 16px 48px;
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .festive-banner-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .festive-banner-btn-outline {
+    background-color: transparent;
+    border: 2px solid {{ section.settings.button_text }};
+  }
+
+  .festive-banner-btn-outline:hover {
+    background-color: {{ section.settings.button_text }};
+    color: {{ section.settings.button_bg }};
+  }
+
+  @media (max-width: 749px) {
+    .festive-banner-title {
+      font-size: var(--font-size-h2);
+    }
+
+    .festive-banner-description {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<section class="festive-banner-section">
+  {% if section.settings.background_image != blank %}
+    <div class="festive-banner-overlay"></div>
+  {% endif %}
+
+  <div class="festive-banner-container">
+    {% if section.settings.section_image != blank %}
+      <img src="{{ section.settings.section_image | image_url: width: 600 }}" alt="{{ section.settings.title }}" class="festive-banner-image">
+    {% endif %}
+
+    <div class="festive-banner-content">
+      <h2 class="festive-banner-title">{{ section.settings.title }}</h2>
+      <p class="festive-banner-description">{{ section.settings.description }}</p>
+
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="festive-banner-btn {% if section.settings.button_style == 'outline' %}festive-banner-btn-outline{% endif %}">
+          {{ section.settings.button_text }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Festive Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Celebrate in Style"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Explore our exclusive festive collection — Diwali, Eid, Weddings & More"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Festive Wear"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "outline",
+          "label": "Outlined"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Side Image (Tablet & Up)"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Overlay Opacity",
+      "default": 0.5
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#1a2b3c"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Festive Banner"
+    }
+  ]
+}
+{% endschema %}

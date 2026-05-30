@@ -1,0 +1,241 @@
+<style>
+  .trust-badges-section {
+    background-color: {{ section.settings.bg_color }};
+    padding: var(--spacing-xl) 0;
+  }
+
+  @media (min-width: 750px) {
+    .trust-badges-section {
+      padding: var(--spacing-2xl) 0;
+    }
+  }
+
+  .trust-badges-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  @media (min-width: 750px) {
+    .trust-badges-container {
+      padding: 0 var(--spacing-lg);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .trust-badges-container {
+      padding: 0 var(--spacing-xl);
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--spacing-md);
+    }
+  }
+
+  .badge {
+    text-align: center;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .badge-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-cream);
+    border-radius: var(--border-radius);
+  }
+
+  .badge-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: {{ section.settings.icon_color }};
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .badge-title {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    color: {{ section.settings.title_color }};
+    font-weight: 500;
+  }
+
+  .badge-subtitle {
+    font-size: 0.875rem;
+    color: {{ section.settings.subtitle_color }};
+  }
+</style>
+
+<section class="trust-badges-section">
+  <div class="trust-badges-container">
+    {% for block in section.blocks %}
+      <div class="badge">
+        <div class="badge-icon">
+          {% case block.settings.icon_type %}
+            {% when 'shipping' %}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 6h22M2 6v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6M6 6V4c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v2M6 18v2M18 18v2"/>
+              </svg>
+            {% when 'quality' %}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1l3 7h7l-5.5 4 2 7-6-4-6 4 2-7-5.5-4h7z"/>
+              </svg>
+            {% when 'returns' %}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10h10M12 5v10M12 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"/>
+              </svg>
+            {% when 'payment' %}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6h18c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2zM3 10v6h18V10H3z"/>
+              </svg>
+            {% when 'secure' %}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1l11 4v7c0 5.5-3.8 10.7-9 12-5.2-1.3-9-6.5-9-12V5l7-4z"/>
+              </svg>
+            {% else %}
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+          {% endcase %}
+        </div>
+        <div class="badge-title">{{ block.settings.title }}</div>
+        <div class="badge-subtitle">{{ block.settings.subtitle }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#6b3d3d"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#8b8b8b"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            {
+              "value": "shipping",
+              "label": "Shipping"
+            },
+            {
+              "value": "quality",
+              "label": "Quality"
+            },
+            {
+              "value": "returns",
+              "label": "Returns"
+            },
+            {
+              "value": "payment",
+              "label": "Payment"
+            },
+            {
+              "value": "secure",
+              "label": "Secure"
+            }
+          ],
+          "default": "shipping"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "On orders above ₹999"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders above ₹999"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "quality",
+            "title": "Handcrafted Quality",
+            "subtitle": "Premium ethnic wear"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "returns",
+            "title": "Easy Returns",
+            "subtitle": "30-day return policy"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "payment",
+            "title": "Cash on Delivery",
+            "subtitle": "Pay when you receive"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon_type": "secure",
+            "title": "Secure Payments",
+            "subtitle": "100% secure transactions"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

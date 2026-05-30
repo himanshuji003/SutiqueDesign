@@ -1,0 +1,221 @@
+{
+  "sections": {
+    "announcement_bar": {
+      "type": "announcement-bar",
+      "blocks": {},
+      "settings": {
+        "announcement_text": "Free Shipping on Orders Above ₹999 | New Festive Collection Now Live",
+        "bg_color": "#6b3d3d",
+        "text_color": "#ffffff",
+        "link_color": "#d4af37",
+        "padding_top": 12,
+        "padding_top_mobile": 10,
+        "padding_horizontal": 20,
+        "font_size": 14,
+        "font_size_mobile": 12
+      }
+    },
+    "hero_landing": {
+      "type": "hero-landing",
+      "blocks": {},
+      "settings": {
+        "title": "Wear the Art of India",
+        "subtitle": "Handcrafted Ethnic Wear for the Modern Indian Woman",
+        "description": "Celebrate your heritage with our curated collection of premium ethnic wear. From traditional to contemporary, find the perfect piece for every occasion.",
+        "accent_line": true,
+        "button_text": "Explore Collection",
+        "button_link": "/collections",
+        "button_text_secondary": "View Festive Edit",
+        "button_link_secondary": "/collections/festive-wear",
+        "bg_color": "#f5efe7",
+        "title_color": "#000000",
+        "subtitle_color": "#6b3d3d",
+        "description_color": "#6b6b6b",
+        "accent_color": "#d4af37",
+        "button_bg": "#6b3d3d",
+        "button_text": "#ffffff"
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "blocks": {
+        "shipping": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "shipping",
+            "title": "Free Shipping",
+            "subtitle": "On orders above ₹999"
+          }
+        },
+        "quality": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "quality",
+            "title": "Handcrafted Quality",
+            "subtitle": "Premium ethnic wear"
+          }
+        },
+        "returns": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "returns",
+            "title": "Easy Returns",
+            "subtitle": "30-day return policy"
+          }
+        },
+        "payment": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "payment",
+            "title": "Cash on Delivery",
+            "subtitle": "Pay when you receive"
+          }
+        },
+        "secure": {
+          "type": "badge",
+          "settings": {
+            "icon_type": "secure",
+            "title": "Secure Payments",
+            "subtitle": "100% secure transactions"
+          }
+        }
+      },
+      "block_order": ["shipping", "quality", "returns", "payment", "secure"],
+      "settings": {
+        "bg_color": "#ffffff",
+        "icon_color": "#6b3d3d",
+        "title_color": "#000000",
+        "subtitle_color": "#8b8b8b"
+      }
+    },
+    "collection_cards": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_1": {
+          "type": "collection",
+          "settings": {}
+        },
+        "collection_2": {
+          "type": "collection",
+          "settings": {}
+        },
+        "collection_3": {
+          "type": "collection",
+          "settings": {}
+        },
+        "collection_4": {
+          "type": "collection",
+          "settings": {}
+        },
+        "collection_5": {
+          "type": "collection",
+          "settings": {}
+        },
+        "collection_6": {
+          "type": "collection",
+          "settings": {}
+        }
+      },
+      "block_order": ["collection_1", "collection_2", "collection_3", "collection_4", "collection_5", "collection_6"],
+      "settings": {
+        "title": "Our Collections",
+        "description": "Explore our premium ethnic wear collections",
+        "bg_color": "#ffffff",
+        "title_color": "#000000",
+        "description_color": "#8b8b8b",
+        "accent_color": "#d4af37",
+        "card_text_color": "#ffffff"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "blocks": {},
+      "settings": {
+        "title": "Fresh From the Studio",
+        "products_per_page": 4,
+        "view_all_text": "View All →",
+        "button_label": "View Product",
+        "discount_label": "Sale",
+        "bg_color": "#f5efe7",
+        "title_color": "#000000",
+        "vendor_color": "#8b8b8b",
+        "price_color": "#6b3d3d",
+        "compare_at_color": "#8b8b8b",
+        "accent_color": "#d4af37",
+        "badge_bg_color": "#6b3d3d",
+        "badge_text_color": "#ffffff",
+        "button_bg": "#6b3d3d",
+        "button_text": "#ffffff"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The quality is exquisite. I feel elegant and authentic in every piece I buy from them. Highly recommended!",
+            "author_name": "Priya Sharma",
+            "author_role": "Verified Buyer"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Excellent delivery and the fabrics are premium. My wedding looks complete because of this store!",
+            "author_name": "Anjali Verma",
+            "author_role": "Wedding Buyer"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Ethnara has become my go-to for every festive occasion. The designs are timeless and elegant.",
+            "author_name": "Kavya Nair",
+            "author_role": "Regular Shopper"
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2", "testimonial_3"],
+      "settings": {
+        "title": "Why Women Love Ethnara",
+        "bg_color": "#ffffff",
+        "title_color": "#000000",
+        "accent_color": "#d4af37",
+        "star_color": "#d4af37",
+        "quote_color": "#000000",
+        "author_color": "#6b3d3d",
+        "role_color": "#8b8b8b"
+      }
+    },
+    "festive_banner": {
+      "type": "festive-banner",
+      "blocks": {},
+      "settings": {
+        "title": "Celebrate in Style",
+        "description": "Explore our exclusive festive collection — Diwali, Eid, Weddings & More",
+        "button_text": "Shop Festive Wear",
+        "button_link": "/collections/festive-wear",
+        "button_style": "solid",
+        "overlay_opacity": 0.5,
+        "bg_color": "#1a2b3c",
+        "title_color": "#d4af37",
+        "description_color": "#ffffff",
+        "button_bg": "#d4af37",
+        "button_text": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "announcement_bar",
+    "hero_landing",
+    "trust_badges",
+    "collection_cards",
+    "featured_products",
+    "testimonials",
+    "festive_banner"
+  ]
+}

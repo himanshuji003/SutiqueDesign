@@ -1,0 +1,574 @@
+/* ============================================================================
+   Luxury Layout Utilities - Grids, Spacing, Responsive
+   ============================================================================ */
+
+/* ============================================================================
+   Grid System (Mobile-First)
+   ============================================================================ */
+
+/* Single Column (Mobile Default) */
+.grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .grid {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Two Column Grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Three Column Grid */
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 990px) {
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Four Column Grid */
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 990px) {
+  .grid-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* Five Column Grid */
+.grid-5 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .grid-5 {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 990px) {
+  .grid-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Six Column Grid */
+.grid-6 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 750px) {
+  .grid-6 {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 990px) {
+  .grid-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Responsive Grid Auto */
+.grid-auto {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  grid-auto-flow: dense;
+}
+
+@media (min-width: 750px) {
+  .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 990px) {
+  .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* ============================================================================
+   Flex Layouts
+   ============================================================================ */
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-end {
+  align-items: flex-end;
+}
+
+.items-stretch {
+  align-items: stretch;
+}
+
+.items-baseline {
+  align-items: baseline;
+}
+
+/* ============================================================================
+   Carousel / Overflow Container
+   ============================================================================ */
+
+.carousel-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.carousel-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+  background: var(--color-gray-light);
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: var(--border-radius-full);
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile: Single item carousel */
+.carousel-item--mobile {
+  width: 100%;
+}
+
+@media (min-width: 750px) {
+  .carousel-item--mobile {
+    width: calc(50% - var(--spacing-md));
+  }
+}
+
+@media (min-width: 990px) {
+  .carousel-item--mobile {
+    width: calc(25% - var(--spacing-lg));
+  }
+}
+
+/* ============================================================================
+   Aspect Ratios
+   ============================================================================ */
+
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.aspect-ratio::before {
+  content: '';
+  display: block;
+  width: 100%;
+  padding-bottom: 100%;
+}
+
+.aspect-ratio > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aspect-ratio-16-9 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.aspect-ratio-16-9::before {
+  content: '';
+  display: block;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+.aspect-ratio-16-9 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aspect-ratio-4-3 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.aspect-ratio-4-3::before {
+  content: '';
+  display: block;
+  width: 100%;
+  padding-bottom: 75%;
+}
+
+.aspect-ratio-4-3 > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================================
+   Responsive Images
+   ============================================================================ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.img-fill {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+
+/* ============================================================================
+   Overlays
+   ============================================================================ */
+
+.overlay {
+  position: relative;
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color var(--transition-duration) var(--transition-timing);
+}
+
+.overlay:hover::after {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-light::after {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.overlay-light:hover::after {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.overlay-gold::after {
+  background-color: rgba(212, 175, 55, 0.3);
+}
+
+.overlay-gold:hover::after {
+  background-color: rgba(212, 175, 55, 0.5);
+}
+
+/* ============================================================================
+   Responsive Padding / Margin Scales
+   ============================================================================ */
+
+.py-section {
+  padding: var(--spacing-xl) 0;
+}
+
+@media (min-width: 750px) {
+  .py-section {
+    padding: var(--spacing-2xl) 0;
+  }
+}
+
+.py-section-lg {
+  padding: var(--spacing-2xl) 0;
+}
+
+@media (min-width: 750px) {
+  .py-section-lg {
+    padding: var(--spacing-3xl) 0;
+  }
+}
+
+/* ============================================================================
+   Responsive Display
+   ============================================================================ */
+
+.hide-on-mobile {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .hide-on-mobile {
+    display: block;
+  }
+}
+
+.hide-on-tablet {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .hide-on-tablet {
+    display: block;
+  }
+}
+
+@media (min-width: 990px) {
+  .hide-on-tablet {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  display: block;
+}
+
+@media (min-width: 990px) {
+  .hide-on-desktop {
+    display: none;
+  }
+}
+
+/* ============================================================================
+   Dividers & Borders
+   ============================================================================ */
+
+.border-bottom {
+  border-bottom: 1px solid var(--color-gray-medium);
+}
+
+.border-top {
+  border-top: 1px solid var(--color-gray-medium);
+}
+
+.border-all {
+  border: 1px solid var(--color-gray-medium);
+}
+
+.border-gold {
+  border: 1px solid var(--color-gold);
+}
+
+.border-maroon {
+  border: 1px solid var(--color-maroon);
+}
+
+.divider-horizontal {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-gray-medium);
+  margin: var(--spacing-md) 0;
+}
+
+.divider-vertical {
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-gray-medium);
+  margin: 0 var(--spacing-md);
+}
+
+/* ============================================================================
+   Visibility & Clearfix
+   ============================================================================ */
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================================================
+   Z-Index Scale
+   ============================================================================ */
+
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-20 {
+  z-index: 20;
+}
+.z-30 {
+  z-index: 30;
+}
+.z-40 {
+  z-index: 40;
+}
+.z-50 {
+  z-index: 50;
+}
+.z-auto {
+  z-index: auto;
+}
+
+/* ============================================================================
+   Positioning
+   ============================================================================ */
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.sticky {
+  position: sticky;
+}
+
+/* ============================================================================
+   Transforms & Transitions
+   ============================================================================ */
+
+.transform {
+  transform: translateZ(0);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+.hover-brightness:hover {
+  filter: brightness(1.1);
+  transition: filter var(--transition-duration) var(--transition-timing);
+}

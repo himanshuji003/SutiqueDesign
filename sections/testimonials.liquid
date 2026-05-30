@@ -1,0 +1,265 @@
+<style>
+  .testimonials-section {
+    background-color: {{ section.settings.bg_color }};
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .testimonials-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  @media (min-width: 750px) {
+    .testimonials-container {
+      padding: 0 var(--spacing-lg);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .testimonials-container {
+      padding: 0 var(--spacing-xl);
+    }
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .section-title {
+    font-size: var(--font-size-h2);
+    font-family: var(--font-heading);
+    color: {{ section.settings.title_color }};
+    margin-bottom: var(--spacing-md);
+  }
+
+  .accent-line-center {
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: {{ section.settings.accent_color }};
+    margin: var(--spacing-md) auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  @media (min-width: 750px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .testimonial-card {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    border: 1px solid #e5dcd5;
+    transition: all 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .testimonial-stars svg {
+    width: 16px;
+    height: 16px;
+    fill: {{ section.settings.star_color }};
+  }
+
+  .testimonial-quote {
+    font-size: 1rem;
+    color: {{ section.settings.quote_color }};
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-weight: 600;
+    color: {{ section.settings.author_color }};
+    margin-bottom: 4px;
+  }
+
+  .testimonial-role {
+    font-size: 0.875rem;
+    color: {{ section.settings.role_color }};
+  }
+</style>
+
+<section class="testimonials-section">
+  <div class="testimonials-container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <span class="accent-line-center"></span>
+    </div>
+
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            {% for i in (1..5) %}
+              {% if i <= block.settings.rating %}
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              {% else %}
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.3;">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <p class="testimonial-quote">{{ block.settings.quote }}</p>
+
+          <div class="testimonial-author">{{ block.settings.author_name }}</div>
+          <div class="testimonial-role">{{ block.settings.author_role }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why Women Love Ethnara"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "author_color",
+      "label": "Author Color",
+      "default": "#6b3d3d"
+    },
+    {
+      "type": "color",
+      "id": "role_color",
+      "label": "Role Color",
+      "default": "#8b8b8b"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Testimonial Text",
+          "default": "The quality is exquisite. I feel elegant and authentic in every piece I buy from them. Highly recommended!"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author Name",
+          "default": "Priya Sharma"
+        },
+        {
+          "type": "text",
+          "id": "author_role",
+          "label": "Author Role/Title",
+          "default": "Verified Buyer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The quality is exquisite. I feel elegant and authentic in every piece. Highly recommended!",
+            "author_name": "Priya Sharma",
+            "author_role": "Verified Buyer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Excellent delivery and the fabrics are premium. My wedding looks complete because of this store!",
+            "author_name": "Anjali Verma",
+            "author_role": "Wedding Buyer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Ethnara has become my go-to for every festive occasion. The designs are timeless and elegant.",
+            "author_name": "Kavya Nair",
+            "author_role": "Regular Shopper"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

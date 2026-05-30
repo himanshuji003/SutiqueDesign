@@ -1,0 +1,289 @@
+<style>
+  .hero-landing {
+    background-color: {{ section.settings.bg_color }};
+    padding: var(--spacing-2xl) 0;
+  }
+
+  @media (min-width: 750px) {
+    .hero-landing {
+      padding: var(--spacing-3xl) 0;
+    }
+  }
+
+  .hero-landing-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+  }
+
+  @media (min-width: 750px) {
+    .hero-landing-container {
+      padding: 0 var(--spacing-lg);
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .hero-landing-container {
+      padding: 0 var(--spacing-xl);
+      gap: var(--spacing-2xl);
+    }
+  }
+
+  .hero-landing-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 749px) {
+    .hero-landing-image {
+      order: -1;
+    }
+  }
+
+  .hero-landing-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-landing-accent-line {
+    display: inline-block;
+    width: 60px;
+    height: 2px;
+    background-color: {{ section.settings.accent_color }};
+    margin-bottom: var(--spacing-md);
+  }
+
+  .hero-landing-title {
+    font-size: var(--font-size-h1);
+    font-family: var(--font-heading);
+    color: {{ section.settings.title_color }};
+    margin-bottom: var(--spacing-md);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .hero-landing-subtitle {
+    font-size: 1.25rem;
+    color: {{ section.settings.subtitle_color }};
+    margin-bottom: var(--spacing-md);
+    font-weight: 300;
+  }
+
+  .hero-landing-description {
+    font-size: 1rem;
+    color: {{ section.settings.description_color }};
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
+  }
+
+  .hero-landing-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .hero-landing-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: 14px 36px;
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hero-landing-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero-landing-btn-secondary {
+    background-color: transparent;
+    border: 2px solid {{ section.settings.button_bg }};
+    color: {{ section.settings.button_bg }};
+  }
+
+  .hero-landing-btn-secondary:hover {
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
+  }
+
+  @media (max-width: 749px) {
+    .hero-landing-title {
+      font-size: var(--font-size-h2);
+    }
+
+    .hero-landing-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .hero-landing-buttons {
+      flex-direction: column;
+    }
+
+    .hero-landing-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="hero-landing">
+  <div class="hero-landing-container">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.title }}" class="hero-landing-image">
+    {% endif %}
+
+    <div class="hero-landing-content">
+      {% if section.settings.accent_line %}
+        <span class="hero-landing-accent-line"></span>
+      {% endif %}
+
+      <h1 class="hero-landing-title">{{ section.settings.title }}</h1>
+
+      {% if section.settings.subtitle != blank %}
+        <h2 class="hero-landing-subtitle">{{ section.settings.subtitle }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="hero-landing-description">{{ section.settings.description }}</p>
+      {% endif %}
+
+      <div class="hero-landing-buttons">
+        {% if section.settings.button_text != blank %}
+          <a href="{{ section.settings.button_link }}" class="hero-landing-btn">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_text_secondary != blank %}
+          <a href="{{ section.settings.button_link_secondary }}" class="hero-landing-btn hero-landing-btn-secondary">
+            {{ section.settings.button_text_secondary }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Landing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Side Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Wear the Art of India"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Handcrafted Ethnic Wear for the Modern Indian Woman"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Celebrate your heritage with our curated collection of premium ethnic wear. From traditional to contemporary, find the perfect piece for every occasion."
+    },
+    {
+      "type": "checkbox",
+      "id": "accent_line",
+      "label": "Show Accent Line",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Primary Button Text",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text_secondary",
+      "label": "Secondary Button Text",
+      "default": "View Festive Edit"
+    },
+    {
+      "type": "url",
+      "id": "button_link_secondary",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f5efe7"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#6b3d3d"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#6b6b6b"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Line Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#6b3d3d"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Landing"
+    }
+  ]
+}
+{% endschema %}

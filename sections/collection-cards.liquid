@@ -1,0 +1,217 @@
+<style>
+  .collection-cards-section {
+    background-color: {{ section.settings.bg_color }};
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .collection-cards-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  @media (min-width: 750px) {
+    .collection-cards-container {
+      padding: 0 var(--spacing-lg);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .collection-cards-container {
+      padding: 0 var(--spacing-xl);
+    }
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .section-title {
+    font-size: var(--font-size-h2);
+    font-family: var(--font-heading);
+    color: {{ section.settings.title_color }};
+    margin-bottom: var(--spacing-md);
+  }
+
+  .accent-line-center {
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: {{ section.settings.accent_color }};
+    margin: var(--spacing-md) auto;
+  }
+
+  .section-description {
+    font-size: 1rem;
+    color: {{ section.settings.description_color }};
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  @media (min-width: 750px) {
+    .cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+    }
+  }
+
+  @media (min-width: 990px) {
+    .cards-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  .collection-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1;
+    background-color: var(--color-gray-light);
+    cursor: pointer;
+  }
+
+  .collection-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-card:hover .collection-card-image {
+    transform: scale(1.08);
+  }
+
+  .collection-card-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .collection-card:hover .collection-card-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .collection-card-title {
+    color: {{ section.settings.card_text_color }};
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    text-align: center;
+    font-weight: 500;
+    padding: var(--spacing-lg);
+    text-transform: capitalize;
+  }
+</style>
+
+<section class="collection-cards-section">
+  <div class="collection-cards-container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <span class="accent-line-center"></span>
+      {% if section.settings.description != blank %}
+        <p class="section-description">{{ section.settings.description }}</p>
+      {% endif %}
+    </div>
+
+    <div class="cards-grid">
+      {% for block in section.blocks %}
+        {% if block.settings.collection != blank %}
+          <a href="{{ block.settings.collection.url }}" class="collection-card">
+            {% if block.settings.collection.featured_image %}
+              <img src="{{ block.settings.collection.featured_image | image_url: width: 600 }}" alt="{{ block.settings.collection.title }}" class="collection-card-image">
+            {% else %}
+              <div style="width: 100%; height: 100%; background-color: var(--color-gray-light);"></div>
+            {% endif %}
+            <div class="collection-card-overlay">
+              <div class="collection-card-title">{{ block.settings.collection.title }}</div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Explore our premium ethnic wear collections"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#8b8b8b"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#d4af37"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Cards",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
